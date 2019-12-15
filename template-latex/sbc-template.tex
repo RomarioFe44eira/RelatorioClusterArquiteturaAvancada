@@ -1,0 +1,89 @@
+\documentclass[12pt]{article}
+\usepackage{sbc-template}
+\usepackage{graphicx,url}
+\usepackage[brazil]{babel}   
+%\usepackage[latin1]{inputenc}  
+ 
+\sloppy
+
+\title{\textbf{Relatório}: Clusters}
+
+\author{
+    Romário Da S. Ferreira\inst{1},
+    Luiz David Santin\inst{2},
+    Lucas Nakamura\inst{3},
+    Rafael Veloso \inst{4}
+}
+
+
+
+\address{ Departamento Computação \\
+        Universidade Tecnologica Federal do Paraná (UTFPR) 
+        -- Medianeira, PR -- Brazil
+        \email{{romario,lucasnakamura.1996}@alunos.utfpr.edu.br},
+        \email{luiz-santin@hotmail.com}
+}
+
+\begin{document} 
+
+\maketitle
+
+\section{Indrodução}
+\subsection{Objetivos}
+
+Criar e configurar um cluster para realização de trabalho de alto custo computacional para computadores convencionais, realizar testes em diversas dimensões de problemas, fazendo assim observações sobre os resultados obtidos, onde tem-se como intenção ordernar arquivos com tamanho de linha diversos usando um algoritmo Bubble Sort paralelizado no qual foi disponibilizado na universidade de \textit{Heriot-Watt University} na Scotland, os arquivos contendo os valores a serem ordenados foram gerado por um script na linguagem c, no qual foi possível escolher o tamanho em linha do arquivo, possuindo como saída três arquivos, sendo eles randômico, ordenado e invertido.
+
+\section{Materiais e métodos} \label{sec:firstpage}
+
+Como materiais foram utilizados três computadores com hardware XXXXX usando o 
+sistema operacional Pelican HPC GNU Linux, três pendrives, um deles sendo usado para armazenar os arquivos compiláveis e um switch para criação de uma rede exclusiva para o cluster. O switch foi escolhido porque não possui um servidor DHCP, o que é muito importante para o funcionamento do cluster, visto que o cluster possui como servidor DHCP o nó mestre.
+
+Foi configurada a inicialização dos três computadores utilizados neste experimento, onde o dois computadores escravos foram configurados para inicializar pela placa de rede NIC, enquanto o computador mestre foi configurado para inicializar pelo pendrive. Desta forma, quando o computador mestre inicializou pelo pendrive e carregou o sistema operacional, foi necessário realizar uma pequena configuração indicando em qual rede o cluster seria montado, permitindo que os computadores escravos carregassem o sistema operacional pela rede e evitando a necessidade de criar novos pendrives bootavéis para carregar o sistema.
+
+Necessitou-se realizar a compilação do algoritmo de ordenação e algoritmo de geração de arquivos a serem ordenados. Para isso, utilizou-se o compilador mpicc, o qual é especifico para compilar códigos paralelizados desenvolvidos em c. Também foi necessário fornecer parâmentros de entrada para que a compilação obtivesse sucesso, respectivamente utilizou-se o compilador padrão gcc para realizar a compilação do programa que gera arquivos, como exemplo temos o comando \textbf{gcc program.c -o programResult}.
+
+\newpage
+
+Após realizado todo esse processo realizou-se a execução de ambos programas, primeiro gerou-se os arquivos necessários com tamanhos de 500000 e 100000 de linhas, posteriormente foi executado o comando \textbf{mpirun -np num-processos program file-in file-out}.
+
+
+\section{Resultados e discussões}
+
+Quando foi utilizado três maquinas para a ordenar os valores, o arquivo randômico foi o que mais se destacou pelo fato quando o numero de processos  mais rápido fico para ordenar mas quando atingia o numero de 512 processos o desempenho diminuiu mas utilizando duas maquinas e uma maquina, no total de 16 processos os valores ficaram maior apesar que utilizando uma maquina o desempenho fico melhor que utilizando duas maquinas .
+
+\begin{table}[]
+\begin{tabular}{l|llllll}
+           &                 &                     & Tipo de Arquivos  &            &            \\  \hline
+           &                 &                     & Tempo em segundos &            &            \\ \hline
+           & Linhas & N. Processos & Randômico         & Ordenado   & Invertido  \\ \hline
+3 maquinas & 3000000         & 16                  & 339,132014        & 113,058303 & 200,285386 \\
+3 maquinas & 3000000    & 32              & 170,791132          & 55,598693         & 95,987929  &            \\
+3 maquinas & 3000000    & 64              & 85,345131           & 27,42872          & 47,990014  &            \\
+3 maquinas & 3000000    & 128             & 40,430747           & 13,701426         & 24,039388  &            \\
+3 maquinas & 3000000    & 256             & 20,167077           & 7,328713          & 2,608632   &            \\
+3 maquinas & 3000000    & 512             & 11,055823           & 5,206665          & 7,890164   &            \\
+3 maquinas & 1000000    & 16              & 12,185057           & 0,154966          & 0,254218   &            \\
+3 maquinas & 1000000    & 32              & 6,213659            & 0,138077          & 0,162084   &            \\
+3 maquinas & 1000000    & 64              & 3,139923            & 0,080498          & 0,154480   &            \\
+3 maquinas & 1000000    & 128             & 1,738475            & 0,028435          & 0,037343   &            \\
+3 maquinas & 1000000    & 256             & 1,338091            & 0,078705          & 0,208795   &            \\
+3 maquinas & 1000000    & 512             & 1,816653            & Erro              & Erro       &            \\
+3 maquinas & 500000     & 16              & 3,197146            & 3,240204          & 5,608355   &            \\
+3 maquinas & 500000     & 32              & 1,609271            & 1,672758          & 2,753006   &            \\
+3 maquinas & 500000     & 64              & 0,892058            & 0,898319          & 1,516231   &            \\
+3 maquinas & 500000     & 128             & 0,731357            & 0,566566          & 1,021335   &            \\
+3 maquinas & 500000     & 256             & 0,639991            & 0,771383          & 1,204545   &            \\
+3 maquinas & 500000     & 512             & 0,408242            & 0,277766          & 0,213484   &            \\
+2 maquinas & 500000          & 16                  & 9,499939          & 3,158108   & 5,570042   \\
+1 maquinas & 500000          & 16                  & 9,531287          & 3,157503   & 5,493562  
+\end{tabular}
+\caption{Tabela dos resultados obtidos ao processar os arquivos no cluster}
+\label{tab:table-result-cluster}
+\end{table}
+\section{Conclusões}
+Concluir o trabalho.
+
+\bibliographystyle{sbc}
+\bibliography{sbc-template}
+
+\end{document}
