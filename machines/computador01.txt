@@ -1,0 +1,26 @@
+
+Nome do host:                              L13-T408133
+Propietario registrado:                     UTFPR
+Fabricante do sistema:                     Dell Inc.
+Modelo do sistema:                         OptiPlex 790
+Processador(es):                           1 processador(es) instalado(s).
+                                           [01]: Intel64 Family 6 Model 42 Stepping 7 GenuineIntel ~3100 Mhz
+Versão do BIOS:                            Dell Inc. A07, 10/09/2011
+
+Inicializar dispositivo:                   \Device\HarddiskVolume1
+
+Memória física total:                      8.073 MB
+Memória física Disponível:                 7.004 MB
+Memória Virtual: Tamanho Máximo:           16.265 MB
+Memória Virtual: Disponível:               15.102 MB
+Memória Virtual: Em Uso:                   1.163 MB
+
+Placa(s) de Rede:                          3 NIC(s) instalado(s).
+                                           [01]: Intel(R) 82579LM Gigabit Network Connection
+                                           [02]: VirtualBox Host-Only Ethernet Adapter
+                                           [03]: Realtek PCI GBE Family Controller
+                                               
+Requisitos do Hyper-V:                     Extensão de Modo de Monitor VM: Sim
+                                           Virtualização Habilitada no Firmware: Sim
+                                           Conversão de Endereço de Segundo N¡vel: Sim
+                                           Prevenção de Execução de Dados Disponível: Sim
